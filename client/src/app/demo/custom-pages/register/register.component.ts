@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  name: string;
+  username: string;
   email: string;
   password: string;
   passwordConfirm: string;
