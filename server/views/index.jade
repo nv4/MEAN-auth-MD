@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 #{title}
+  h3 Welcome to the homepage.
+  if user
+    p You are logged in!
+    a.btn.btn-primary(href='/profile', role='button')
+      span.glyphicon.glyphicon-user
+      |   View Profile
+  else
+    p Not authenticated. Login from the navbar.
