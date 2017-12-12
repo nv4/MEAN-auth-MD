@@ -29,6 +29,8 @@ import {CalendarComponent} from "./demo/apps/calendar/calendar.component";
 import {ChatComponent} from "./demo/apps/chat/chat.component";
 import {AutocompleteComponent} from "./demo/components/autocomplete/autocomplete.component";
 
+import {AuthGuard} from './_guards/auth.guard';
+
 const routes: Routes = [
   {
     path: 'login',
@@ -45,6 +47,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
