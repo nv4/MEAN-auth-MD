@@ -73,6 +73,9 @@ import { ToolbarComponent } from './core/toolbar/toolbar.component';
 import { FavoritesComponent } from './core/toolbar/favorites/favorites.component';
 import { ClientComponent } from './client/client.component';
 
+import {AuthGuard} from './_guards/auth.guard';
+import {AuthenticationService, UserService} from './_services/index';
+
 const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   swipePropagation: false
@@ -168,7 +171,10 @@ const sortablejsConfig: SortablejsOptions = {
     BreadcrumbService,
     D3ChartService,
     MailService,
-    MediaReplayService
+    MediaReplayService,
+    AuthGuard,
+    AuthenticationService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
