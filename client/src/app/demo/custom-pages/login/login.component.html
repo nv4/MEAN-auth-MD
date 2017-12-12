@@ -12,7 +12,7 @@
             <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password">
           </md-input-container>
           <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
-            <!-- <md-checkbox class="remember-me">Remember Me</md-checkbox> -->
+            <md-checkbox class="remember-me" [(ngModel)]="remembered">Remember Me</md-checkbox>
             <a class="forgot-password" [routerLink]="['/forgot-password']">Forgot Password?</a>
           </div>
           <button color="primary" md-raised-button [disabled]="!form.valid">SIGN IN</button>
