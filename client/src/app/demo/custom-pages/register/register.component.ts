@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import {Router} from "@angular/router";
 
+import { AlertService, UserService } from '../../../_services/index';
+
 @Component({
   selector: 'ms-register',
   templateUrl: './register.component.html',
