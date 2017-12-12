@@ -14,11 +14,13 @@ import { AlertService, UserService } from '../../../_services/index';
   animations: [ fadeInAnimation ]
 })
 export class RegisterComponent implements OnInit {
+  model: any = {};
+  loading = false;
 
-  username: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
+  // username: string;
+  // email: string;
+  // password: string;
+  // passwordConfirm: string;
 
   constructor(
     private router: Router,
@@ -31,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     // this.router.navigate(['/']);
-
+    this.loading
   }
 
 }

@@ -6,16 +6,16 @@
     <form #form="ngForm" (ngSubmit)="register()">
       <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
         <md-input-container>
-          <input mdInput placeholder="Username" type="text" name="username" required [(ngModel)]="username">
+          <input mdInput placeholder="Username" type="text" name="username" required [(ngModel)]="model.username">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="email">
+          <input mdInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="model.email">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+          <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password">
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Confirm password" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm">
+          <input mdInput placeholder="Confirm password" type="password" name="password-confirm" required [(ngModel)]="model.passwordConfirm">
         </md-input-container>
         <!-- <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
           <md-checkbox class="remember-me">I accept the <a href="#">terms and conditions.</a></md-checkbox>
