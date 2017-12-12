@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import {Router} from "@angular/router";
 
-import { AlertService, UserService } from '../../../_services/index';
+import { UserService } from '../../../_services/index';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'ms-register',
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private alertService: AlertService
+    private snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -37,11 +38,15 @@ export class RegisterComponent implements OnInit {
     this.userService.create(this.model)
       .subscribe(
         data => {
-          this.alertService.success('You have successfully registered', true);
+          this.snackBar.open('You have successfully registered!', 'Close', {
+            duration: 7000
+          });
           this.router.navigate(['/login']);
         },
         error => {
-          this.alertService.error(error);
+          this.snackBar.open(error, 'Close', {
+            duration: 7000
+          });
           this.loading = false;
         }
       );
