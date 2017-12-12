@@ -13,6 +13,7 @@ var bcrypt = require('bcrypt-nodejs');
 var async = require('async');
 var crypto = require('crypto');
 var flash = require('express-flash');
+var cors = require('cors');
 
 //MongoDB document model for user schema
 var userSchema = new mongoose.Schema({
@@ -85,6 +86,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(cors()); //enable CORS on all routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -106,6 +108,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
+  if (req.user) {
+    req.flash('info', 'You are already logged in.');
+    return res.redirect('/profile');
+  }
   res.render('login', {
     user: req.user
   });
