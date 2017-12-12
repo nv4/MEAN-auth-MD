@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {fadeInAnimation} from "../../../route.animation";
 
+import {AuthenticationService} from '../../../_services/index';
+
 @Component({
   selector: 'ms-login',
   templateUrl: './login.component.html',
