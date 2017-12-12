@@ -17,9 +17,9 @@
         <md-input-container>
           <input mdInput placeholder="Password (Confirm)" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm">
         </md-input-container>
-        <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
+        <!-- <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
           <md-checkbox class="remember-me">I accept the <a href="#">terms and conditions.</a></md-checkbox>
-        </div>
+        </div> -->
         <button color="primary" md-raised-button [disabled]="!form.valid">CREATE ACCOUNT</button>
         <p class="note">Already have an account?<br/> <a [routerLink]="['/login']">Sign in here</a></p>
       </div>
