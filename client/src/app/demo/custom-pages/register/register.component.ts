@@ -21,14 +21,17 @@ export class RegisterComponent implements OnInit {
   passwordConfirm: string;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
   }
 
   register() {
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
+
   }
 
 }
