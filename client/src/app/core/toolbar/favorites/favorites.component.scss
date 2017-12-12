@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  height: 100%;
+  border-right: 1px solid rgba(0,0,0, 0.12);
+  padding-right: 14px;
+}
+
+.favorites-container {
+  height: 100%;
+
+  .add-favorite {
+    color: #FFB300;
+  }
+
+  .favorite {
+    color: rgba(0,0,0, 0.54);
+    margin: 0 2px;
+
+    md-icon {
+      height: 22px;
+      width: 22px;
+      line-height: 22px;
+      font-size: 22px;
+    }
+
+    .letter-icon {
+      font-size: 20px;
+    }
+
+    &:first-child {
+      margin: 0 2px 0 0;
+    }
+  }
+}
+
+
+.favorite-menu {
+
+  .favorite-search {
+    padding: 12px 16px 20px;
+
+    md-icon {
+      color: rgba(0,0,0,.54);
+    }
+
+    .favorite-search-input {
+      border: 0;
+      margin-left: 12px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .favorite-results {
+    margin-top: 8px;
+    max-height: 265px;
+    overflow-y: hidden;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="favorites-container" fxLayout="row" fxLayoutAlign="start center">
+  <div [sortablejs]="currentFavorites" [sortablejsOptions]="sortableOptions" fxLayout="row">
+    <!-- remove mdTooltip from button to enable drag & drop -->
+    <button *ngFor="let favorite of currentFavorites" class="favorite" type="button" md-icon-button [routerLink]="[favorite.route]"
+            [mdTooltip]="favorite.name" mdTooltipPosition="below">
+      <md-icon *ngIf="favorite.icon">{{ favorite.icon }}</md-icon>
+      <span class="letter-icon" *ngIf="!favorite.icon">{{ favorite.name.charAt(0).toUpperCase() }}</span>
+    </button>
+  </div>
+  <button class="add-favorite" type="button" md-icon-button
+          mdTooltip="Add/Remove favorites" mdTooltipPosition="below"
+          [mdMenuTriggerFor]="favoriteMenu" (onMenuClose)="clearSearchInput()">
+    <md-icon>star</md-icon>
+  </button>
+</div>
+
+<md-menu xPosition=after yPosition="below" [overlapTrigger]="false" #favoriteMenu="mdMenu">
+  <div class="favorite-menu" (click)="$event.stopPropagation()">
+    <div class="favorite-search" fxLayout="row">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <md-icon>search</md-icon>
+      </div>
+      <input class="favorite-search-input" type="search" placeholder="Search..." [(ngModel)]="searchValue">
+    </div>
+    <md-divider></md-divider>
+    <div class="favorite-results" [perfect-scrollbar]>
+      <button md-menu-item fxLayout="row" fxLayoutAlign="start center" *ngFor="let item of displayingItems" (click)="toggleFavorite(item)">
+        <md-icon>{{ item.icon }}</md-icon>
+        <span>{{ item.name }}</span>
+        <span fxFlex></span>
+        <md-icon *ngIf="isFavorite(item)">star</md-icon>
+        <md-icon *ngIf="!isFavorite(item)">star_border</md-icon>
+      </button>
+    </div>
+  </div>
+</md-menu>

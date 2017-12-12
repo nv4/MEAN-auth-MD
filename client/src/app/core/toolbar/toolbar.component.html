@@ -1,0 +1,57 @@
+<md-toolbar class="main-toolbar mat-elevation-z2">
+  <div fxHide="false" fxHide.gt-sm>
+    <button (click)="sidenav.open()" md-icon-button>
+      <md-icon>menu</md-icon>
+    </button>
+  </div>
+
+  <ms-favorites *ngIf="showFavorites" fxHide="true" fxHide.gt-sm="false"></ms-favorites>
+
+  <ms-breadcrumbs *ngIf="showBreadcrumbs" fxHide="true" fxHide.gt-sm="false"></ms-breadcrumbs>
+
+  <span fxFlex></span>
+
+  <button fxHide="true" fxHide.gt-sm="false" md-button class="fullscreen-toggle" (click)="toggleFullscreen()">
+    <md-icon *ngIf="!isFullscreen">fullscreen</md-icon>
+    <md-icon *ngIf="isFullscreen">fullscreen_exit</md-icon>
+  </button>
+
+  <ms-search></ms-search>
+
+  <div class="user-button-container" #userButton>
+    <button class="user-button" md-button [mdMenuTriggerFor]="menu">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <img src="assets/img/avatars/noavatar.png" class="avatar-flex">
+        <span class="name" fxHide="true" fxHide.gt-sm="false">David Smith</span>
+        <md-icon fxHide="true" fxHide.gt-sm="false">keyboard_arrow_down</md-icon>
+      </div>
+    </button>
+  </div>
+
+  <button md-button class="quickpanel-toggle" (click)="quickpanel.open()">
+    <md-icon>format_align_right</md-icon>
+  </button>
+</md-toolbar>
+
+
+<md-menu class="user-menu" yPosition="below" [overlapTrigger]="false" #menu="mdMenu">
+  <div class="user-menu-inner" [style.min-width]="userButtonWidth">
+    <button md-menu-item>
+      <md-icon>account_circle</md-icon>
+      <span>Profile</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>settings</md-icon>
+      <span>Settings</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>help</md-icon>
+      <span>Help</span>
+    </button>
+    <md-divider></md-divider>
+    <button [routerLink]="['/login']" md-menu-item>
+      <md-icon>exit_to_app</md-icon>
+      <span>Logout</span>
+    </button>
+  </div>
+</md-menu>
