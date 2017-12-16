@@ -75,6 +75,7 @@ import { ClientComponent } from './client/client.component';
 
 import {AuthGuard} from './_guards/auth.guard';
 import {AuthenticationService, UserService} from './_services/index';
+import { customHttpProvider } from './_helpers/custom-http';
 
 const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -172,6 +173,7 @@ const sortablejsConfig: SortablejsOptions = {
     D3ChartService,
     MailService,
     MediaReplayService,
+    customHttpProvider,
     AuthGuard,
     AuthenticationService,
     UserService
