@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   // username: string;
   // email: string;
   // password: string;
-  // passwordConfirm: string;
+  passwordConfirm: string;
 
   constructor(
     private router: Router,
@@ -35,20 +35,26 @@ export class RegisterComponent implements OnInit {
   register() {
     // this.router.navigate(['/']);
     this.loading = true;
-    this.userService.create(this.model)
-      .subscribe(
-        data => {
-          this.snackBar.open('You have successfully registered!', 'Close', {
-            duration: 7000
-          });
-          this.router.navigate(['/login']);
-        },
-        error => {
-          this.snackBar.open(error, 'Close', {
-            duration: 7000
-          });
-          this.loading = false;
-        }
-      );
+    if (this.model.password != this.passwordConfirm) {
+      this.snackBar.open('Password mismatch, try again!','Close',{
+        duration: 7000
+      });
+    } else {
+      this.userService.create(this.model)
+        .subscribe(
+          data => {
+            this.snackBar.open('You have successfully registered!', 'Close', {
+              duration: 7000
+            });
+            this.router.navigate(['/login']);
+          },
+          error => {
+            this.snackBar.open(error, 'Close', {
+              duration: 7000
+            });
+            this.loading = false;
+          }
+        );
+    }
   }
 }
