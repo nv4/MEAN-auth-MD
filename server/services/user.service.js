@@ -92,89 +92,94 @@ function create(userParam) {
       } else {
         createUser();
       }
-    });
-
-    function createUser() {
-      // set user object to userParam without the cleartext password
-      var user = _.omit(userParam, 'password');
-
-      // add hashed password to user object
-      user.hash = bcrypt.hashSync(userParam.password, 10);
-
-      db.users.insert(
-        user,
-        function (err, doc) {
-          if (err) deferred.reject(err.name + ': ' + err.message);
-
-          deferred.resolve();
-        });
-      }
-
-      return deferred.promise;
     }
+  );
 
-    function update(_id, userParam) {
-      var deferred = Q.defer();
+  function createUser() {
+    // set user object to userParam without the cleartext password
+    var user = _.omit(userParam, 'password');
 
-      // validation
-      db.users.findById(_id, function (err, user) {
+    // add hashed password to user object
+    user.hash = bcrypt.hashSync(userParam.password, 10);
+
+    db.users.insert(
+      user,
+      function (err, doc) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
-        if (user.username !== userParam.username) {
-          // username has changed so check if the new username is already taken
-          db.users.findOne(
-            { username: userParam.username },
-            function (err, user) {
-              if (err) deferred.reject(err.name + ': ' + err.message);
+        deferred.resolve();
+      }
+    );
+  }
 
-              if (user) {
-                // username already exists
-                deferred.reject('Username "' + req.body.username + '" is already taken')
-              } else {
-                updateUser();
-              }
-            });
+  return deferred.promise;
+}
+
+function update(_id, userParam) {
+  var deferred = Q.defer();
+
+  // validation
+  db.users.findById(_id, function (err, user) {
+    if (err) deferred.reject(err.name + ': ' + err.message);
+
+    if (user.username !== userParam.username) {
+      // username has changed so check if the new username is already taken
+      db.users.findOne(
+        { username: userParam.username },
+        function (err, user) {
+          if (err) deferred.reject(err.name + ': ' + err.message);
+
+          if (user) {
+            // username already exists
+            deferred.reject('Username "' + req.body.username + '" is already taken')
           } else {
             updateUser();
           }
-        });
-
-        function updateUser() {
-          // fields to update
-          var set = {
-            firstName: userParam.firstName,
-            lastName: userParam.lastName,
-            username: userParam.username,
-          };
-
-          // update password if it was entered
-          if (userParam.password) {
-            set.hash = bcrypt.hashSync(userParam.password, 10);
-          }
-
-          db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
-            { $set: set },
-            function (err, doc) {
-              if (err) deferred.reject(err.name + ': ' + err.message);
-
-              deferred.resolve();
-            });
-          }
-
-          return deferred.promise;
         }
+      );
+    } else {
+      updateUser();
+    }
+  });
 
-        function _delete(_id) {
-          var deferred = Q.defer();
+  function updateUser() {
+    // fields to update
+    var set = {
+      firstName: userParam.firstName,
+      lastName: userParam.lastName,
+      username: userParam.username,
+    };
 
-          db.users.remove(
-            { _id: mongo.helper.toObjectID(_id) },
-            function (err) {
-              if (err) deferred.reject(err.name + ': ' + err.message);
+    // update password if it was entered
+    if (userParam.password) {
+      set.hash = bcrypt.hashSync(userParam.password, 10);
+    }
 
-              deferred.resolve();
-            });
+    db.users.update(
+      { _id: mongo.helper.toObjectID(_id) },
+      { $set: set },
+      function (err, doc) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
 
-            return deferred.promise;
-          }
+        deferred.resolve();
+      }
+    );
+  }
+
+  return deferred.promise;
+}
+
+function _delete(_id) {
+  var deferred = Q.defer();
+
+  db.users.remove(
+    { _id: mongo.helper.toObjectID(_id) },
+    function (err) {
+      if (err) deferred.reject(err.name + ': ' + err.message);
+
+      deferred.resolve();
+    }
+  );
+
+  return deferred.promise;
+}
