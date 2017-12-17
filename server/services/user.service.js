@@ -29,8 +29,6 @@ function authenticate(username, password) {
       deferred.resolve({
         _id: user._id,
         username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
         token: jwt.sign({ sub: user._id }, config.secret)
       });
     } else {
