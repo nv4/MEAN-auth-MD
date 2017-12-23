@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import {Router} from "@angular/router";
 
-import { UserService } from '../../../_services/index';
+import { AlertService, UserService } from '../../../_services/index';
 import {MdSnackBar} from '@angular/material';
 
 @Component({
@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private snackBar: MdSnackBar
+    private snackBar: MdSnackBar,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -36,22 +37,25 @@ export class RegisterComponent implements OnInit {
     // this.router.navigate(['/']);
     this.loading = true;
     if (this.model.password != this.passwordConfirm) {
-      this.snackBar.open('Password mismatch, try again!','Close',{
-        duration: 7000
-      });
+      // this.snackBar.open('Password mismatch, try again!','Close',{
+      //   duration: 7000
+      // });
+      console.log("password mismatch");
     } else {
       this.userService.create(this.model)
         .subscribe(
           data => {
-            this.snackBar.open('You have successfully registered!', 'Close', {
-              duration: 7000
-            });
+            // this.snackBar.open('You have successfully registered!', 'Close', {
+            //   duration: 7000
+            // });
+            this.alertService.success('Registration successful', true);
             this.router.navigate(['/login']);
           },
           error => {
-            this.snackBar.open(error, 'Close', {
-              duration: 7000
-            });
+            // this.snackBar.open(error, 'Close', {
+            //   duration: 7000
+            // });
+            this.alertService.error(error);
             this.loading = false;
           }
         );
