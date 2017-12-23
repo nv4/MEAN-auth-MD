@@ -73,9 +73,10 @@ import { ToolbarComponent } from './core/toolbar/toolbar.component';
 import { FavoritesComponent } from './core/toolbar/favorites/favorites.component';
 import { ClientComponent } from './client/client.component';
 
-import {AuthGuard} from './_guards/auth.guard';
-import {AuthenticationService, UserService} from './_services/index';
 import { customHttpProvider } from './_helpers/custom-http';
+import {AlertComponent} from './_directives/index';
+import {AuthGuard} from './_guards/auth.guard';
+import {AlertService, AuthenticationService, UserService} from './_services/index';
 
 const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -140,7 +141,8 @@ const sortablejsConfig: SortablejsOptions = {
     AutocompleteComponent,
     ToolbarComponent,
     FavoritesComponent,
-    ClientComponent
+    ClientComponent,
+    AlertComponent
   ],
   entryComponents: [
     DemoDialog,
@@ -176,7 +178,8 @@ const sortablejsConfig: SortablejsOptions = {
     customHttpProvider,
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
