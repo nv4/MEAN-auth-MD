@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
 import {fadeInAnimation} from "../../../route.animation";
 
-import {AuthenticationService} from '../../../_services/index';
+import {AlertService, AuthenticationService} from '../../../_services/index';
 import {MdSnackBar} from '@angular/material';
 
 @Component({
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private snackBar: MdSnackBar
+    private snackBar: MdSnackBar,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -52,15 +53,16 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
-          this.snackBar.open('You have successfully logged in!', 'Close', {
-            duration: 7000
-          });
+          // this.snackBar.open('You have successfully logged in!', 'Close', {
+          //   duration: 7000
+          // });
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.snackBar.open(error, 'Close', {
-            duration: 7000
-          });
+          // this.snackBar.open(error, 'Close', {
+          //   duration: 7000
+          // });
+          this.alertService.error(error);
           this.loading = false;
         }
       );
