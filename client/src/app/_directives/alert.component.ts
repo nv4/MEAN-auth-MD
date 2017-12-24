@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AlertService } from '../_services/index';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
     // moduleId: module.id,
@@ -11,9 +12,16 @@ import { AlertService } from '../_services/index';
 export class AlertComponent {
     message: any;
 
-    constructor(private alertService: AlertService) { }
+    constructor(
+      private alertService: AlertService,
+      private snackBar: MdSnackBar
+    ) { }
 
     ngOnInit() {
         this.alertService.getMessage().subscribe(message => { this.message = message; });
+        this.snackBar.open(this.message.text, 'Close', {
+          duration: 7000
+        });
     }
+
 }
