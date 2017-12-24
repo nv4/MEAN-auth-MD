@@ -19,9 +19,6 @@ export class AlertComponent {
 
     ngOnInit() {
         this.alertService.getMessage().subscribe(message => { this.message = message; });
-        this.snackBar.open(this.message.text, 'Close', {
-          duration: 7000
-        });
     }
 
 }
