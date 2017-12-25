@@ -15,6 +15,7 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.forgot = forgot;
 
 module.exports = service;
 
@@ -36,6 +37,12 @@ function authenticate(username, password) {
       deferred.resolve();
     }
   });
+
+  return deferred.promise;
+}
+
+function forgot() {
+  var deferred = Q.defer();
 
   return deferred.promise;
 }

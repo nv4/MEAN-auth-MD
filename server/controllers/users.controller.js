@@ -5,6 +5,7 @@ var userService = require('services/user.service');
 
 // routes
 router.post('/authenticate', authenticate);
+router.post('/forgot', forgot);
 router.post('/register', register);
 router.get('/', getAll);
 router.get('/current', getCurrent);
@@ -27,6 +28,10 @@ function authenticate(req, res) {
   .catch(function (err) {
     res.status(400).send(err);
   });
+}
+
+function forgot(req, res) {
+  userService.forgot()
 }
 
 function register(req, res) {
