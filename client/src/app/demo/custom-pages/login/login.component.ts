@@ -16,11 +16,14 @@ import {AlertService, AuthenticationService} from '../../../_services/index';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
-  loading = false;
+  // loading = false;
   returnUrl: string;
   failure = false;
   // success = false;
   remembered = false;
+  statusText: string;
+  statusIcon: string;
+  statusColor: string;
 
   // email: string;
   // password: string;
@@ -50,24 +53,24 @@ export class LoginComponent implements OnInit {
 
   login() {
     // this.router.navigate(['/']);
-    this.loading = true;
+    // this.loading = true;
+    this.statusIcon = "";
+    this.statusText = "";
     // this.failure = false;
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
-          // this.snackBar.open('You have successfully logged in!', 'Close', {
-          //   duration: 7000
-          // });
-          // this.success = true;
+          this.statusIcon = "check";
+          this.statusText = "Login successful! Redirecting..."
+          this.statusColor = "#4CAF50";
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          // this.snackBar.open(error, 'Close', {
-          //   duration: 7000
-          // });
-          this.alertService.error(error);
           this.failure = true;
-          this.loading = false;
+          this.statusIcon = "warning";
+          this.statusText = error;
+          this.statusColor = "#D50000";
+          // this.loading = false;
         }
       );
   }
