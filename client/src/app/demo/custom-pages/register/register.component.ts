@@ -3,6 +3,7 @@ import {fadeInAnimation} from "../../../route.animation";
 import {Router} from "@angular/router";
 
 import { AlertService, UserService } from '../../../_services/index';
+import { AlertComponent } from '../../../_directives/index';
 import {MdSnackBar} from '@angular/material';
 
 @Component({
@@ -16,12 +17,16 @@ import {MdSnackBar} from '@angular/material';
 })
 export class RegisterComponent implements OnInit {
   model: any = {};
-  loading = false;
+  // loading = false;
 
   // username: string;
   // email: string;
   // password: string;
   passwordConfirm: string;
+  statusText: string;
+  statusIcon: string;
+  statusColor: string;
+  checked = false;
 
   constructor(
     private router: Router,
@@ -33,30 +38,34 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  openSnackBar() {
+    this.snackBar.open("There are currently no terms or conditions.","Dismiss",{
+      duration: 4000,
+    });
+  }
+
   register() {
     // this.router.navigate(['/']);
-    this.loading = true;
+    // this.loading = true;
     if (this.model.password != this.passwordConfirm) {
-      // this.snackBar.open('Password mismatch, try again!','Close',{
-      //   duration: 7000
-      // });
+      this.statusIcon = "warning";
+      this.statusText = "Passwords do not match!";
+      this.statusColor = "#D50000";
+      // this.snackBar.open("Passwords do not match!","Dismiss");
       console.log("password mismatch");
     } else {
       this.userService.create(this.model)
         .subscribe(
           data => {
-            // this.snackBar.open('You have successfully registered!', 'Close', {
-            //   duration: 7000
-            // });
-            this.alertService.success('Registration successful', true);
+            // this.alertService.success('Registration successful', true);
             this.router.navigate(['/login']);
           },
           error => {
-            // this.snackBar.open(error, 'Close', {
-            //   duration: 7000
-            // });
-            this.alertService.error(error);
-            this.loading = false;
+            // this.alertService.error(error);
+            this.statusIcon = "warning";
+            this.statusText = error;
+            this.statusColor = "#D50000";
+            // this.loading = false;
           }
         );
     }

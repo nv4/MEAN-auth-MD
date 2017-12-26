@@ -17,11 +17,19 @@
         <md-input-container>
           <input mdInput placeholder="Confirm password" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm">
         </md-input-container>
-        <!-- <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
-          <md-checkbox class="remember-me">I accept the <a href="#">terms and conditions.</a></md-checkbox>
-        </div> -->
-        <button color="primary" md-raised-button [disabled]="!form.valid">CREATE ACCOUNT</button>
+        <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
+          <md-checkbox class="accept" name="tc" required #tc="ngModel" [(ngModel)]="checked">
+            I accept the <a (click)=openSnackBar()>terms and conditions.</a>
+          </md-checkbox>
+        </div>
+        <button color="primary" md-raised-button [disabled]="form.invalid || tc.invalid">CREATE ACCOUNT</button>
         <p class="note">Already have an account?<br/> <a [routerLink]="['/login']">Sign in here</a></p>
+        <div style="height: 20px">
+          <div *ngIf="form.valid" class="notice" [ngStyle]="{'color': statusColor}">
+            <md-icon>{{ statusIcon }}</md-icon>
+            <span class="aligned-with-icon">{{ statusText }}</span>
+          </div>
+        </div>
       </div>
     </form>
   </div>

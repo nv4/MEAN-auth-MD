@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
   model: any = {};
   // loading = false;
   returnUrl: string;
-  failure = false;
+  // failure = false;
   // success = false;
-  remembered = false;
+  // remembered = false;
   statusText: string;
   statusIcon: string;
   statusColor: string;
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.failure = true;
+          // this.failure = true;
           this.statusIcon = "warning";
           this.statusText = error;
           this.statusColor = "#D50000";

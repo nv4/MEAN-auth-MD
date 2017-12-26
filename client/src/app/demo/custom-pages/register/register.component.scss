@@ -18,7 +18,7 @@
   }
 
   .register-content {
-    padding: 24px 42px 42px;
+    padding: 24px 42px 20px;
 
     md-input-container {
       width: 100%;
@@ -28,7 +28,7 @@
     .extra-options {
       margin: 16px 0 32px;
 
-      .remember-me {
+      .accept {
         color: #777;
       }
     }
@@ -44,8 +44,18 @@
 
     .note {
       color: #777;
-      margin: 24px 0 0;
+      margin: 24px 0 16px;
       text-align: center;
+    }
+  }
+
+  .notice {
+    display: flex;
+    align-items: center;
+    // padding-left: 10px;
+
+    .aligned-with-icon {
+      margin-left: 5px;
     }
   }
 }
