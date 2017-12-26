@@ -95,7 +95,6 @@ function getById(_id) {
 
 function create(userParam) {
   var deferred = Q.defer();
-  var nameNotFound = false;
 
   // username validation
   db.users.findOne(
@@ -107,7 +106,6 @@ function create(userParam) {
         // username already exists
         deferred.reject('Username "' + userParam.username + '" is already taken');
       } else {
-        // nameNotFound = true;
         // createUser();
         db.users.findOne(
           { email: userParam.email },
@@ -125,11 +123,6 @@ function create(userParam) {
       }
     }
   );
-
-  //email validation
-  if (nameNotFound) {
-
-  }
 
   function createUser() {
     // set user object to userParam without the cleartext password

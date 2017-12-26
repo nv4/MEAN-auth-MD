@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   statusText: string;
   statusIcon: string;
   statusColor: string;
+  statusHeight = "0px";
   checked = false;
 
   constructor(
@@ -44,10 +45,18 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  clearStatus () {
+    this.statusHeight = "0px";
+    this.statusIcon = "";
+    this.statusText = "";
+    this.statusColor = "";
+  }
+
   register() {
     // this.router.navigate(['/']);
     // this.loading = true;
     if (this.model.password != this.passwordConfirm) {
+      this.statusHeight = "32px";
       this.statusIcon = "warning";
       this.statusText = "Passwords do not match!";
       this.statusColor = "#D50000";
@@ -62,6 +71,7 @@ export class RegisterComponent implements OnInit {
           },
           error => {
             // this.alertService.error(error);
+            this.statusHeight = "32px";
             this.statusIcon = "warning";
             this.statusText = error;
             this.statusColor = "#D50000";

@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   statusText: string;
   statusIcon: string;
   statusColor: string;
+  statusHeight = "0px";
 
   // email: string;
   // password: string;
@@ -51,6 +52,13 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+  clearStatus () {
+    this.statusHeight = "0px";
+    this.statusIcon = "";
+    this.statusText = "";
+    this.statusColor = "";
+  }
+
   login() {
     // this.router.navigate(['/']);
     // this.loading = true;
@@ -60,6 +68,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
+          this.statusHeight = "20px";
           this.statusIcon = "check";
           this.statusText = "Login successful! Redirecting..."
           this.statusColor = "#4CAF50";
@@ -67,6 +76,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           // this.failure = true;
+          this.statusHeight = "20px";
           this.statusIcon = "warning";
           this.statusText = error;
           this.statusColor = "#D50000";

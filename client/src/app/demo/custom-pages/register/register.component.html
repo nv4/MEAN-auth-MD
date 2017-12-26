@@ -6,16 +6,16 @@
     <form #form="ngForm" (ngSubmit)="register()">
       <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
         <md-input-container>
-          <input mdInput placeholder="Username" type="text" name="username" required [(ngModel)]="model.username">
+          <input mdInput placeholder="Username" type="text" name="username" required [(ngModel)]="model.username" (click)=clearStatus()>
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="model.email">
+          <input mdInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="model.email" (click)=clearStatus()>
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password">
+          <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password" (click)=clearStatus()>
         </md-input-container>
         <md-input-container>
-          <input mdInput placeholder="Confirm password" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm">
+          <input mdInput placeholder="Confirm password" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm" (click)=clearStatus()>
         </md-input-container>
         <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
           <md-checkbox class="accept" name="tc" required #tc="ngModel" [(ngModel)]="checked">
@@ -24,8 +24,8 @@
         </div>
         <button color="primary" md-raised-button [disabled]="form.invalid || tc.invalid">CREATE ACCOUNT</button>
         <p class="note">Already have an account?<br/> <a [routerLink]="['/login']">Sign in here</a></p>
-        <div style="height: 20px">
-          <div *ngIf="form.valid" class="notice" [ngStyle]="{'color': statusColor}">
+        <div *ngIf="form.valid" [ngStyle]="{'height': statusHeight}">
+          <div class="notice" [ngStyle]="{'color': statusColor}">
             <md-icon>{{ statusIcon }}</md-icon>
             <span class="aligned-with-icon">{{ statusText }}</span>
           </div>
