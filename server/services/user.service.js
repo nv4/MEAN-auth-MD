@@ -48,7 +48,7 @@ function forgot(email) {
     if (err) deferred.reject(err.name + ': ' + err.message);
 
     if (address) {
-      
+
     } else {
       deferred.resolve(); //email not found
     }
@@ -95,8 +95,9 @@ function getById(_id) {
 
 function create(userParam) {
   var deferred = Q.defer();
+  var nameNotFound = false;
 
-  // validation
+  // username validation
   db.users.findOne(
     { username: userParam.username },
     function (err, user) {
@@ -106,10 +107,29 @@ function create(userParam) {
         // username already exists
         deferred.reject('Username "' + userParam.username + '" is already taken');
       } else {
-        createUser();
+        // nameNotFound = true;
+        // createUser();
+        db.users.findOne(
+          { email: userParam.email },
+          function (err, user) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            if (user) {
+              // email already exists
+              deferred.reject('Email "' + userParam.email + '" is already taken');
+            } else {
+              createUser();
+            }
+          }
+        );
       }
     }
   );
+
+  //email validation
+  if (nameNotFound) {
+
+  }
 
   function createUser() {
     // set user object to userParam without the cleartext password
