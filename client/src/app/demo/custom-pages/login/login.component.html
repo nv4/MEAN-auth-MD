@@ -12,11 +12,27 @@
             <input mdInput placeholder="Password" type="password" name="password" required [(ngModel)]="model.password">
           </md-input-container>
           <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
-            <md-checkbox class="remember-me" [(ngModel)]="remembered">Remember Me</md-checkbox>
+            <!-- <md-checkbox class="remember-me" [(ngModel)]="remembered">Remember Me</md-checkbox> -->
+            <span md-tooltip="Form may not be secure" style="color:#D50000; display:flex; align-items:center">
+              <md-icon>lock_open</md-icon>
+              <span class="aligned-with-icon" style="padding-left: 5px">SSL disabled</span>
+            </span>
+            <!-- if using https, disable previous span and enable following span -->
+            <!-- <span md-tooltip="HTTPS detected, form secured" style="color:#4CAF50; display:flex; align-items:center">
+              <md-icon>lock</md-icon>
+              <span class="aligned-with-icon" style="padding-left: 5px">SSL enabled</span>
+            </span> -->
             <a class="forgot-password" [routerLink]="['/forgot-password']">Forgot Password?</a>
           </div>
           <button color="primary" md-raised-button [disabled]="!form.valid">SIGN IN</button>
         <p class="note">Don't have an account?<br/> <a [routerLink]="['/register']">Click here to create one</a></p>
+        <div style="height: 20px">
+          <div *ngIf="failure" class="notice">
+            <md-icon>warning</md-icon>
+            <span class="aligned-with-icon">Incorrect username or password!</span>
+          </div>
+          <!-- <md-progress-bar *ngIf="loading" [hidden]="!loading" mode="indeterminate"></md-progress-bar> -->
+        </div>
       </div>
     </form>
   </div>

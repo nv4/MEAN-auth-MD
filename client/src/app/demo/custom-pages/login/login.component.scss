@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  background: #fff url('/assets/img/backgrounds/3.jpg') no-repeat center center fixed;
+  background: #dde url('/assets/img/backgrounds/3.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -18,7 +18,7 @@
   }
 
   .login-content {
-    padding: 24px 42px 42px;
+    padding: 24px 42px 20px;
 
     md-input-container {
       width: 100%;
@@ -44,8 +44,21 @@
 
     .note {
       color: #777;
-      margin: 24px 0 0;
+      margin: 24px 0 16px;
       text-align: center;
+    }
+  }
+
+  .notice {
+    // background: #2B303B;
+    color: #D50000;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    // max-height: 20px !important;
+
+    .aligned-with-icon {
+      margin-left: 5px; /* optional */
     }
   }
 }

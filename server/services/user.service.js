@@ -41,8 +41,19 @@ function authenticate(username, password) {
   return deferred.promise;
 }
 
-function forgot() {
+function forgot(email) {
   var deferred = Q.defer();
+
+  db.users.findOne({ email: email}, function (err, address) {
+    if (err) deferred.reject(err.name + ': ' + err.message);
+
+    if (address) {
+      
+    } else {
+      deferred.resolve(); //email not found
+    }
+
+  });
 
   return deferred.promise;
 }

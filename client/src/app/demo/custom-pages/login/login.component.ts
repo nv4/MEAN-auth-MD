@@ -3,7 +3,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {fadeInAnimation} from "../../../route.animation";
 
 import {AlertService, AuthenticationService} from '../../../_services/index';
-import {MdSnackBar} from '@angular/material';
+// import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'ms-login',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
   returnUrl: string;
-
+  failure = false;
+  // success = false;
   remembered = false;
 
   // email: string;
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private snackBar: MdSnackBar,
+    // public snackBar: MdSnackBar,
     private alertService: AlertService
   ) { }
 
@@ -50,12 +51,14 @@ export class LoginComponent implements OnInit {
   login() {
     // this.router.navigate(['/']);
     this.loading = true;
+    // this.failure = false;
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
         data => {
           // this.snackBar.open('You have successfully logged in!', 'Close', {
           //   duration: 7000
           // });
+          // this.success = true;
           this.router.navigate([this.returnUrl]);
         },
         error => {
@@ -63,6 +66,7 @@ export class LoginComponent implements OnInit {
           //   duration: 7000
           // });
           this.alertService.error(error);
+          this.failure = true;
           this.loading = false;
         }
       );

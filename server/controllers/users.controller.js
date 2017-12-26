@@ -31,7 +31,12 @@ function authenticate(req, res) {
 }
 
 function forgot(req, res) {
-  userService.forgot()
+  userService.forgot(req.body.email)
+  .then(function () {
+    res.sendStatus(200);
+  }).catch(function (err) {
+    res.status(400).send(err);
+  });
 }
 
 function register(req, res) {
