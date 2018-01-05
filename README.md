@@ -1,4 +1,4 @@
-Requires node and npm. <br/>
+Requires Node.js and npm. <br/>
 
 **From project root:** <br/>
 Install client dependencies - ```npm install ./client/package.json``` <br/>
