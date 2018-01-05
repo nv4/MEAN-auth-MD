@@ -1,3 +1,5 @@
+Requires node and npm. <br/><br/>
+
 **From project root:** <br/>
 Install client dependencies - ```npm install ./client/package.json``` <br/>
 Install server dependencies - ```npm install ./server/package.json``` <br/>
