@@ -1,8 +1,8 @@
 Requires Node.js and npm. <br/>
 
-**From project root:** <br/>
-Install client dependencies - ```npm install ./client/package.json``` <br/>
-Install server dependencies - ```npm install ./server/package.json``` <br/>
-Run server (backend) - ```node ./server/server.js``` <br/>
-Run client (interface) - ```cd client``` then ```npm start``` <br/>
-
+**To install and run:** <br/>
+Install client dependencies - ```npm install``` from client directory <br/>
+Install server dependencies - ```npm install``` from server directory <br/>
+Run server (backend) - ```node server.js``` from server directory <br/>
+Run client (interface) - ```npm start``` from client directory <br/>
+Go to `http://localhost:4200`
